@@ -40,66 +40,61 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
-    results = []
     
-    # Creates list of files in directory
-    filename = listdir(image_dir)
+    in_files = listdir("pet_images/")
+    
+    pet_labels = []
     
     # Creates empty dictionary for the results (pet labels, etc.)
     results_dic = dict()
-    
+
     # Processes each of the files to create a dictionary where the key
     # is the filename and the value is the picture label (below).
-    print("\nPrinting all key-value pairs in dictionary results_dic:")
-    for key in results_dic:
-        print("Filename=", key, "   Pet Label=", results_dic[key][0]) 
-   
+    #print("\nPrinting all key-value pairs in dictionary results_dic:")
+    for key in in_files:
+    #print("Filename=", key, "   Pet Label=", results_dic[key][0]) 
+    # Skips file if starts with . (like .DS_Store of Mac OSX) because it 
+    # isn't an pet image file
+        if in_files[idx][0] != ".":
+            pet_label = ""
+
+            # TODO: 2a. BELOW REPLACE pass with CODE that will process each 
+            #          filename in the in_files list to extract the dog breed 
+            #          name from the filename. Recall that each filename can be
+            #          accessed by in_files[idx]. Be certain to place the 
+            #          extracted dog breed name in the variable pet_label 
+            #          that's created as an empty string ABOVE
+            for word in image_name:         
+                # Creates temporary label variable to hold pet label name extracted 
+                image_name = in_files[idx].split("_")
+                    # Sets string to lower case letters
+                if word.isalpha():
+                    pet_label += word.lower() + " "
+                    # Splits lower case string by _ to break into words 
+
+        # Strip off starting/trailing whitespace characters 
+            pet_label = pet_label.strip()
+            pet_label.append(pet_label)
+
+    results_dic = dict()
+
     # Processes through each file in the directory, extracting only the words
     # of the file that contain the pet image label
     for idx in range(0, len(in_files), 1):
-       
-       # Skips file if starts with . (like .DS_Store of Mac OSX) because it 
-       # isn't an pet image file
-       if in_files[idx][0] != ".":
-
-        # Creates temporary label variable to hold pet label name extracted 
-        pet_label = ""
-
-        # TODO: 2a. BELOW REPLACE pass with CODE that will process each 
-        #          filename in the in_files list to extract the dog breed 
-        #          name from the filename. Recall that each filename can be
-        #          accessed by in_files[idx]. Be certain to place the 
-        #          extracted dog breed name in the variable pet_label 
-        #          that's created as an empty string ABOVE
-                   
-        # Sets string to lower case letters
-        low_pet_image = pet_image.lower()
-
-        # Splits lower case string by _ to break into words 
-        word_list_pet_image = low_pet_image.split("_")
-        
-        # Strip off starting/trailing whitespace characters 
-        pet_name = pet_name.strip()
-        
-        # Prints resulting pet_name
-        print("\nFilename=", pet_image, "   Label=", pet_name)
-
         # If filename doesn't already exist in dictionary add it and it's
         # pet label - otherwise print an error message because indicates 
         # duplicate files (filenames)
         if in_files[idx] not in results_dic:
-           results_dic[in_files[idx]] = [pet_label]
-              
+            results_dic[in_files[idx]] = [pet_label[idx]]       
         else:
             print("** Warning: Duplicate files exist in directory:", 
-                  in_files[idx])
- 
+                   in_files[idx])
+
     # TODO 2b. Replace None with the results_dic dictionary that you created
     # with this function
     return results_dic
-
-#results = get_pet_labels(image_dir)
+    #results = get_pet_labels(image_dir)
 
 from print_functions_for_lab_checks import *
 # Function that checks Pet Images in the results Dictionary using results    
-check_creating_pet_image_labels(results)
+#check_creating_pet_image_labels(results_dic)
