@@ -41,9 +41,9 @@ def get_pet_labels(image_dir):
          index 0 = pet image label (string)
     """
     
-    in_files = listdir("pet_images/")
+    in_files = listdir(image_dir)
     
-    pet_labels = []
+    #pet_labels = []
     
     # Creates empty dictionary for the results (pet labels, etc.)
     results_dic = dict()
@@ -52,7 +52,7 @@ def get_pet_labels(image_dir):
     # is the filename and the value is the picture label (below).
     #print("\nPrinting all key-value pairs in dictionary results_dic:")
     for key in in_files:
-    #print("Filename=", key, "   Pet Label=", results_dic[key][0]) 
+        print("Filename=", key, "   Pet Label=", results_dic[key][0]) 
     # Skips file if starts with . (like .DS_Store of Mac OSX) because it 
     # isn't an pet image file
         if in_files[idx][0] != ".":
@@ -76,7 +76,7 @@ def get_pet_labels(image_dir):
             pet_label = pet_label.strip()
             pet_label.append(pet_label)
 
-    results_dic = dict()
+    #results_dic = dict()
 
     # Processes through each file in the directory, extracting only the words
     # of the file that contain the pet image label
@@ -97,4 +97,4 @@ def get_pet_labels(image_dir):
 
 from print_functions_for_lab_checks import *
 # Function that checks Pet Images in the results Dictionary using results    
-#check_creating_pet_image_labels(results_dic)
+#check_creating_pet_image_labels(results)
